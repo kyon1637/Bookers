@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <li class="">
+        <%= link_to 'マイページ', user_path(current_user.id) %>
+      </li>
     <title>Bookers</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
