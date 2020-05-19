@@ -8,7 +8,7 @@ class BooksController < ApplicationController
     	@book.user_id = current_user.id
     if  @book.save
     	flash[:notice] = 'You have created book successfully.'
-       redirect_to user_path
+       redirect_to book_path(@book)
    else
    	   @books = Book.all
    	    @book = Book.new
@@ -22,12 +22,28 @@ class BooksController < ApplicationController
     end
 
     def show
+        @book = Book.find(params[:id])
     end
      def destroy
      book = Book.find(params[:id])
      book.destroy
-    redirect_to books_url, notice: 'Book was successfully destroyed.'
+     flash[:notice] = 'Book was successfully destroyed.'
+    redirect_to user_path(current_user.id)
     end
+
+    def ensure_correct_user
+    @book = Book.find_by(id:params[:id])
+    if @book.user_id = @current_user.id
+      flash[:notice] = "権限がありません"
+      redirect_to("/books/index")
+    end
+    end
+
+    def update
+    @book = Book.find(params[:id])
+    @book.update(book_params)
+    redirect_to book_path(@book.id)
+  end
 
     private
     def book_params

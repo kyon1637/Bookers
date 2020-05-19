@@ -1,43 +1,60 @@
-<div class="profile-container">
-    <h3 class="profile-name"><%= @user.name %></h3>
-    <%= form_for @user do |form| %>
-  <%= form.attachment_field :profile_image %>
+  <body>
+    <div class ="body">
+    <div class="profile-container">
+<h1>User info</h1>
+ <%=  attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+      <table class="table">
+        <tbody>
+      <tr>
+      <th>name</th>
+    <th><%= @user.name %></th>
+      </tr>
+      <tr>
+    <th>introduction</th>
+    <th><%= @user.introduction %></th>
+      </tr>
+    </tbody>
+  </table>
+
+ <% if @user.id == current_user.id %>
+        <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
+    <% end %>
+
+<%= form_for(@book) do |f| %>
+   <h1>New book</h1>
+   <h4>Title</h4>
+  <%= f.text_field :title %>
+
+  <h4>Opinion</h4>
+    <%= f.text_area :body %>
+
+    <%= f.submit 'Create Book' %>
+
 <% end %>
 </div>
+<div class ="profile-index">
+<h1>Books</h1>
 
-  <h1>Books</h1>
-
-   <table>
+   <table class="table">
+    <thead>
     <tr>
       <th>Title</th>
-   <thead>
    <th>Body</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-  <% @books.each do |book| %>
- <tr>
+    <% @books.each do |book| %>
+   <tr>
         <td><%= book.title %></td>
         <td><%= book.body %></td>
-        <td><%= link_to 'Show', book %></td>
         <td><%= link_to 'Edit', edit_book_path(book) %></td>
         <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<%= form_for(@book) do |f| %>
-   <h1>New book</h1>
-
-    <h4>Title</h4>
-    <%= f.text_field :title %>
-
-    <h4>Opinion</h4>
-    <%= f.text_area :body %>
-
-    <%= f.submit 'Create Book' %>
-
-<% end %>
+</div>
+</div>
+</body>

@@ -2,32 +2,30 @@
 <html>
   <head>
 
-    <li class="">
-
-      </li>
     <title>Bookers</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
+     </head>
+     <body>
     <% if user_signed_in? %>
     <li class="">
- 
+    <%= link_to "Home",user_path(current_user.id) %>
     </li>
 
     <li class="">
+    <%= link_to "Users", books_path %>
     </li>
 
     <li class="">
     <%= link_to "logout", destroy_user_session_path, method: :delete %>
    </li>
    <li class="">
+   </li>
     <% end %>
-
     <%= yield %>
   </body>
+
 </html>
