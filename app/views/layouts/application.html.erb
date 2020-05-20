@@ -10,22 +10,24 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
      </head>
      <body>
-    <% if user_signed_in? %>
-    <li class="">
-    <%= link_to "Home",user_path(current_user.id) %>
+     <header class="head-top">
+      <h1>Bookers</h1>
+      <nav>
+     <li>
+
     </li>
 
-    <li class="">
+    <li>
     <%= link_to "Users", books_path %>
     </li>
 
-    <li class="">
+    <li>
     <%= link_to "logout", destroy_user_session_path, method: :delete %>
    </li>
-   <li class="">
+   <li>
    </li>
-    <% end %>
-    <%= yield %>
-  </body>
-
+  </nav>
+  </header>
+ <%= yield %>
+</body>
 </html>

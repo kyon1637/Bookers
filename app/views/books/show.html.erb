@@ -1,36 +1,62 @@
-<h1>Books</h1>
 <% if flash[:notice] %>
   <p><%= flash[:notice] %></p>
 <% end %>
-   <table>
-    <tr>
+<div class="profile-container">
+  <div class="box1">
+<h1>User info</h1>
+ <%=  attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+      <table class="table">
+        <tbody>
+      <tr>
+      <th>name</th>
+    <th><%= current_user.name %></th>
+      </tr>
+      <tr>
+    <th>introduction</th>
+    <th><%= current_user.introduction %></th>
+      </tr>
+    </tbody>
+  </table>
+  <% if @user.id == current_user.id %>
+      <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
+ <% end %>
+<%= form_for(@booknew) do |f| %>
+   <h1>New book</h1>
+   <h4>Title</h4>
+  <%= f.text_field :title %>
+
+  <h4>Opinion</h4>
+    <%= f.text_area :body %>
+
+    <%= f.submit 'Create Book' %>
+
+<% end %>
+</div>
+<div class ="profile-index">
+<h1>Books detail</h1>
+
+   <table class="table">
     <thead>
-  <th>Title</th>
-   <th>Body</th>
+    <tr>
+      <th></th>
+      <th></th>
+   <th></th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
-  	<h2>Book detail</h2>
-  	<tbody>
+  <tbody>
    <tr>
-        <td><%= @book.title %></td>
+        <td><%= link_to @user_path do %>
+        <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %> <%= @user.name %>
+          <% end %>
+        </td>
+        <td><%= link_to @book.title, book_path %></td>
         <td><%= @book.body %></td>
         <td><%= link_to 'Edit', edit_book_path(@book) %></td>
         <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
   </tbody>
 </table>
-
-<%= form_for(@book) do |f| %>
-   <h1>New book</h1>
-
-    <h4>Title</h4>
-    <%= f.text_field :title %>
-
-    <h4>Opinion</h4>
-    <%= f.text_area :body %>
-
-    <%= f.submit 'Create Book' %>
-
-<% end %>
+</div>
+</div>
