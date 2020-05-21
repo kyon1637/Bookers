@@ -1,7 +1,7 @@
 <div class="profile-container">
   <div class="box1">
 <h1>User info</h1>
- <%=  attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+ <%=  attachment_image_tag current_user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
       <table class="table">
         <tbody>
       <tr>
@@ -14,8 +14,8 @@
       </tr>
     </tbody>
   </table>
- <p><%= link_to "プロフィール編集", edit_user_path(current_user), class: "pull-right" %></p>
-   <%= form_for(@book) do |f| %>
+  <p><%= link_to "プロフィール編集", edit_user_path(current_user), class: "pull-right" %></p>
+<%= form_for(@book) do |f| %>
    <h1>New book</h1>
    <h4>Title</h4>
   <%= f.text_field :title %>
@@ -28,33 +28,34 @@
 <% end %>
 </div>
 <div class ="profile-index">
-<h1>Books</h1>
+<h1>Users</h1>
 
    <table class="table">
     <thead>
     <tr>
-      <th></th>
-      <th>Title</th>
-   <th>Opinion</th>
+      <th>image</th>
+      <th>name</th>
+   <th></th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @books.each do |book| %>
+    <% @users.each do |user| %>
    <tr>
-        <td><%=  attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td>
-        <td><%= link_to book.title, book_path(book.id) %></td>
-        <td><%= book.body %></td>
+        <td>
+          <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+          </td>
+        <td><%= user.name %></td>
+        <td><%= link_to 'Show', user_path(user.id) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 </div>
 </div>
-<footer>
+ <footer>
     <div class ="row">
       <p>CopyRight Infratop.inc</p>
     </div>
   </footer>
-

@@ -47,16 +47,23 @@
 
   <tbody>
    <tr>
-        <td><%= link_to @user_path do %>
+        <td><%= link_to user_path(@user) do %>
         <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %> <%= @user.name %>
-          <% end %>
+        <% end %>
         </td>
         <td><%= link_to @book.title, book_path %></td>
         <td><%= @book.body %></td>
+        <% if @user.id == current_user.id %>
         <td><%= link_to 'Edit', edit_book_path(@book) %></td>
         <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
   </tbody>
 </table>
 </div>
 </div>
+<footer>
+    <div class ="row">
+      <p>CopyRight Infratop.inc</p>
+    </div>
+  </footer>
