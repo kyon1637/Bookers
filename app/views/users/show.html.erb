@@ -17,7 +17,7 @@
       </tr>
     </tbody>
   </table>
-  <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
+  <span class="glyphicon glyphicon-globe"><%= link_to edit_user_path(@user), class: "btn btn-primary btn-block" %></span>
 <%= form_for(@book) do |f| %>
    <h1>New book</h1>
    <h4>Title</h4>
@@ -60,7 +60,7 @@
 </div>
 </div>
 <footer>
-    <div class ="row">
+    <div class ="bottom">
       <p>CopyRight Infratop.inc</p>
     </div>
   </footer>
