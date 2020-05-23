@@ -9,17 +9,17 @@
         <tbody>
       <tr>
       <th>name</th>
-    <th><%= current_user.name %></th>
+    <th><%= @user.name %></th>
       </tr>
       <tr>
     <th>introduction</th>
-    <th><%= current_user.introduction %></th>
+    <th><%= @user.introduction %></th>
       </tr>
     </tbody>
   </table>
-  <% if @user.id == current_user.id %>
-      <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
- <% end %>
+  <%= link_to edit_user_path(current_user), class: 'btn btn-default btn-block' do %>
+  <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+  <% end %>
 <%= form_for(@booknew) do |f| %>
    <h1>New book</h1>
    <h4>Title</h4>
@@ -28,12 +28,12 @@
   <h4>Opinion</h4>
     <%= f.text_area :body %>
 
-    <%= f.submit 'Create Book' %>
+    <%= f.submit 'Create Book', class: 'btn btn-primary btn-block' %>
 
 <% end %>
 </div>
 <div class ="profile-index">
-<h1>Books detail</h1>
+<h1>Book detail</h1>
 
    <table class="table">
     <thead>
@@ -54,8 +54,8 @@
         <td><%= link_to @book.title, book_path %></td>
         <td><%= @book.body %></td>
         <% if @user.id == current_user.id %>
-        <td><%= link_to 'Edit', edit_book_path(@book) %></td>
-        <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Edit', edit_book_path(@book), class: 'btn btn-success' %></td>
+        <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか?' } %></td>
         <% end %>
       </tr>
   </tbody>

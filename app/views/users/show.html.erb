@@ -4,7 +4,7 @@
 <div class="profile-container">
   <div class="box1">
 <h1>User info</h1>
- <%=  attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+ <%=  attachment_image_tag current_user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
       <table class="table">
         <tbody>
       <tr>
@@ -17,7 +17,9 @@
       </tr>
     </tbody>
   </table>
-  <span class="glyphicon glyphicon-globe"><%= link_to edit_user_path(@user), class: "btn btn-primary btn-block" %></span>
+  <%= link_to edit_user_path(@user), class: 'btn btn-default btn-block' do %>
+  <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+  <% end %>
 <%= form_for(@book) do |f| %>
    <h1>New book</h1>
    <h4>Title</h4>
@@ -26,7 +28,7 @@
   <h4>Opinion</h4>
     <%= f.text_area :body %>
 
-    <%= f.submit 'Create Book' %>
+    <%= f.submit 'Create Book',class: 'btn btn-primary btn-block' %>
 
 <% end %>
 </div>
