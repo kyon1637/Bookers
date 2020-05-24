@@ -1,8 +1,9 @@
 <% if flash[:notice] %>
   <p><%= flash[:notice] %></p>
 <% end %>
-<div class="profile-container">
-  <div class="box1">
+<div class="container">
+  <div class="row">
+  <div class="col-xs-3">
 <h1>User info</h1>
  <%=  attachment_image_tag @user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
       <table class="table">
@@ -32,7 +33,7 @@
 
 <% end %>
 </div>
-<div class ="profile-index">
+<div class ="col-xs-9">
 <h1>Book detail</h1>
 
    <table class="table">
@@ -55,11 +56,13 @@
         <td><%= @book.body %></td>
         <% if @user.id == current_user.id %>
         <td><%= link_to 'Edit', edit_book_path(@book), class: 'btn btn-success' %></td>
-        <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか?' } %></td>
+        <td><%= link_to 'Destroy', @book, method: :delete, data: {confirm: '本当に消しますか?' },class: 'btn btn-danger' %>
+        </td>
         <% end %>
       </tr>
   </tbody>
 </table>
+</div>
 </div>
 </div>
 <footer>

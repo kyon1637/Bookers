@@ -58,13 +58,14 @@ div {
 nav{
 	list-style: none;
 	overflow: hidden;
+  width: 100%;
 }
 nav li{
 	text-decoration: none;
-	float: right;
+  top: 10px;
 	padding: 10px;
 	text-align: center;
-	width: 100px;
+  float: left;
 }
 
   h2,h3 {
@@ -73,10 +74,6 @@ nav li{
     margin-top: 20px;
     margin-bottom: 10px;
     margin-left: 40px;
-  }
-
-  h3:first-child{
-  color: white;
   }
 
   ul li {

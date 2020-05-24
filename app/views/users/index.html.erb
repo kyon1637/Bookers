@@ -1,5 +1,6 @@
-<div class="profile-container">
-  <div class="box1">
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3">
 <h1>User info</h1>
  <%=  attachment_image_tag current_user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
       <table class="table">
@@ -29,7 +30,7 @@
 
 <% end %>
 </div>
-<div class ="profile-index">
+<div class ="col-xs-9">
 <h1>Users</h1>
 
    <table class="table">
@@ -54,6 +55,7 @@
     <% end %>
   </tbody>
 </table>
+</div>
 </div>
 </div>
  <footer>

@@ -12,53 +12,63 @@
      <body>
      <header class="head-top">
       <nav class="navbar naver-fixed-top navbar-inverse">
-         <h3>Bookers</h3>
+         <h3 class="title">Bookers</h3>
+         <div class="icon">
     <% if user_signed_in? %>
 
+      <li>
+       <%= link_to"Home", user_path(current_user.id),class:"glyphicon glyphicon-home" %>
+    </li>
+
+    <li>
+    <%= link_to"Users", users_path,class:"glyphicon glyphicon-user" %>
+    </li>
+
      <li>
-      <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-    <%= link_to "logout", destroy_user_session_path, method: :delete %>
+    <%= link_to"Books",books_path,class:"glyphicon glyphicon-book" %>
+     </li>
+
+     <li>
+     <%= link_to destroy_user_session_path, method: :delete do %>
+     <i class="glyphicon glyphicon-log-out"></i>
+     logout
+     <% end %>
+   </li>
+ </div>
+
+   <% else %>
+   <div class="icon">
+   <li>
+    <%= link_to ("http://localhost:3000/") do %>
+    <i class="glyphicon glyphicon-home" aria-hidden="true"></i>
+     Home
+     <% end %>
+  </li>
+
+  <li>
+    <%= link_to home_about_path do %>
+    <i class="glyphicon glyphicon-link" aria-hidden="true"></i>
+    About
+    <% end %>
    </li>
 
    <li>
-    <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
-      <%= link_to "Books", books_path %>
-     </li>
-
-    <li>
-    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-    <%= link_to "Users", users_path %>
-    </li>
-
-    <li>
-    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-     <%= link_to "Home", user_path(current_user.id) %>
-    </li>
-
-   <% else %>
-
- <li>
-   <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
-    <%= link_to "Log in",new_user_session_path %>
-   </li>
-
-
- <li>
-  <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-   <%= link_to "Sign up", new_user_registration_path %>
+  <%= link_to new_user_registration_path do %>
+  <i class="glyphicon glyphicon-edit" aria-hidden="true"></i>
+   sign up
+   <% end %>
  </li>
 
+
  <li>
-   <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
-    <%= link_to "About" , home_about_path %>
+    <%= link_to new_user_session_path do %>
+    <i class="glyphicon glyphicon-log-out" aria-hidden="true"></i>
+    login
+    <% end %>
    </li>
 
-  <li>
-    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-    <%= link_to "Home", "http://localhost:3000/" %>
-  </li>
-
    <% end %>
+ </div>
      </nav>
   </header>
 <%= yield %>
