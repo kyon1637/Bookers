@@ -59,9 +59,43 @@
         <td><%= link_to 'Destroy', @book, method: :delete, data: {confirm: '本当に消しますか?' },class: 'btn btn-danger' %>
         </td>
         <% end %>
-      </tr>
-  </tbody>
-</table>
+        <% if @book.favorited_by?(current_user) %>
+    <td>
+    <%= link_to book_favorites_path(@book), method: :delete do %>
+    <i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: red;"></i>
+    <%= @book.favorites.count %>
+    <% end %>
+    </td>
+<% else %>
+    <td>
+    <%= link_to book_favorites_path(@book), method: :post do %>
+    <i class="glyphicon glyphicon-heart" aria-hidden="true" style="color: gray;"></i>
+    <%= @book.favorites.count %>
+    <% end %>
+<% end %>
+     </td>
+        <td>コメント数:<%= @book.book_comments.count %></td>
+   </tr>
+    <% @book.book_comments.each do |book_comment| %>
+    <tr>
+                    <td>
+                        <%= attachment_image_tag @user,:profile_image, :fill, 60, 60, format: 'jpeg',fallback: "no_image.jpg" %>
+                    </td>
+                <td>
+                      <%= book_comment.user.name %></td>
+                    <td><%= book_comment.comment %></td>
+                    <% if book_comment.user == current_user %>
+    <td><%= link_to "削除", book_book_comment_path(book_comment.book, book_comment), method: :delete, class: "btn btn-danger pull-right" %></td>
+                   <% end %>
+    <% end %>
+    </tr>
+    </tbody>
+     </table>
+    <%= form_for [@book, @book_comment] do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+            <%= f.text_area :comment, rows:'5', class: "form-control",placeholder: "コメントをここに" %>
+    <%= f.submit "送信", class: "btn btn-default pull-right" %>
+      <% end %>
 </div>
 </div>
 </div>
