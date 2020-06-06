@@ -16,6 +16,14 @@
     <th>introduction</th>
     <th><%= @user.introduction %></th>
       </tr>
+       <tr>
+    <th>follows</th>
+    <th><%= link_to @user.followings.count,follows_user_path(@user) %></th>
+      </tr>
+      <tr>
+        <th>followers</th>
+        <th><%= link_to @user.followers.count,followers_user_path(@user) %></th>
+      </tr>
     </tbody>
   </table>
   <%= link_to edit_user_path(current_user), class: 'btn btn-default btn-block' do %>
@@ -84,7 +92,7 @@
                 <td>
                       <%= book_comment.user.name %></td>
                     <td><%= book_comment.comment %></td>
-                    <% if book_comment.user == current_user %>
+                    <% unless book_comment.user != current_user %>
     <td><%= link_to "削除", book_book_comment_path(book_comment.book, book_comment), method: :delete, class: "btn btn-danger pull-right" %></td>
                    <% end %>
     <% end %>
