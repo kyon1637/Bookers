@@ -13,4 +13,5 @@ Rails.application.routes.draw do
    end
  root :to => 'home#home'
  get "home/about" => "home#new"
+ get "search" => "users#search"
   end
