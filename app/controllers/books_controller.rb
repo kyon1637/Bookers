@@ -27,6 +27,7 @@ class BooksController < ApplicationController
         @user = User.find_by(id: @book.user_id)
         @booknew = Book.new
         @book_comment = BookComment.new
+        @book_comments = @book.book_comments.order(created_at: :desc)
     end
 
     def edit
