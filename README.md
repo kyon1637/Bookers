@@ -22,3 +22,28 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# アプリケーション名
+Bookers
+
+# 概要
+練習サイト
+
+# バージョン
+Rails 5.2.4.3
+Ruby 2.5.7
+
+# 使い方
+本の感想を共有し合うSNSサイト
+
+# フロントエンド
+HTML/CSS
+Bootstrap
+JavaScript/jQuery/Ajax
+
+# サーバサイド
+Ruby/Ruby on Rails
+利用したライブラリ(devise,kaminari,refile,pry-byebug)
+
+# インフラ
+Vagrant/VirtualBox
